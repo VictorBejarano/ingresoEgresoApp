@@ -7,17 +7,8 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 
-
-
 @NgModule({
-    declarations: [
-        LoginComponent,
-        RegisterComponent
-    ],
-    imports: [
-        CommonModule,
-        FormsModule,
-        AngularFireAuthModule
-    ]
+    declarations: [LoginComponent, RegisterComponent],
+    imports: [CommonModule, FormsModule, AngularFireAuthModule],
 })
-export class AuthModule {  }
+export class AuthModule {}

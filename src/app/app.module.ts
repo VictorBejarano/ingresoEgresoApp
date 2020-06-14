@@ -13,6 +13,7 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 // Modulos Personalizados
 import { AuthModule } from './auth/auth.module';
+import { SharedModule } from './shared/shared.module';
 // Graficas
 import { ChartsModule } from 'ng2-charts';
 // Environment
@@ -23,12 +24,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { IngresoEgresoComponent } from './ingreso-egreso/ingreso-egreso.component';
 import { EstadisticaComponent } from './ingreso-egreso/estadistica/estadistica.component';
 import { DetalleComponent } from './ingreso-egreso/detalle/detalle.component';
-import { FootherComponent } from './shared/foother/foother.component';
-import { NavbarComponent } from './shared/navbar/navbar.component';
-import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { OrdenIngresoEgresoPipe } from './ingreso-egreso/orden-ingreso-egreso.pipe';
-
-
 
 
 @NgModule({
@@ -38,14 +34,12 @@ import { OrdenIngresoEgresoPipe } from './ingreso-egreso/orden-ingreso-egreso.pi
     IngresoEgresoComponent,
     EstadisticaComponent,
     DetalleComponent,
-    FootherComponent,
-    NavbarComponent,
-    SidebarComponent,
     OrdenIngresoEgresoPipe
   ],
   imports: [
     BrowserModule,
     AuthModule,
+    SharedModule,
     AppRoutingModule,
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase),
