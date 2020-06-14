@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
+import { auth } from 'firebase/app';
 
 import Swal from 'sweetalert2';
 
@@ -34,5 +35,10 @@ export class AuthService {
                 console.error(error);
                 Swal.fire('Error en el login', error.message, 'error');
             });
+    }
+
+    logout() {
+        this.router.navigate(['/login']);
+        this.afAuth.signOut();
     }
 }
