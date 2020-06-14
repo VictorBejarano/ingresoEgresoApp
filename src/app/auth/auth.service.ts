@@ -11,7 +11,10 @@ import Swal from 'sweetalert2';
 import { User } from './user.model';
 import { Store } from '@ngrx/store';
 import { AppState } from '../app.reducer';
-import { ActivarLoadingAction, DesactivarLoadingAction } from '../shared/ui.actions';
+import {
+    ActivarLoadingAction,
+    DesactivarLoadingAction,
+} from '../shared/ui.actions';
 
 @Injectable({
     providedIn: 'root',
@@ -25,7 +28,6 @@ export class AuthService {
     ) {}
 
     crearUsuario(nombre: string, email: string, password: string) {
-
         this.store.dispatch(new ActivarLoadingAction());
 
         this.afAuth
@@ -53,7 +55,14 @@ export class AuthService {
 
     initAuthListener() {
         this.afAuth.authState.subscribe((fbUser: firebase.User) => {
-            console.log('USER', fbUser);
+            if (fbUser) {
+                this.afDB
+                    .doc(`${fbUser.uid}/usuario`)
+                    .valueChanges()
+                    .subscribe((usuarioObj) => {
+                        console.log(usuarioObj);
+                    });
+            }
         });
     }
 
