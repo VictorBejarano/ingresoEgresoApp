@@ -6,7 +6,7 @@ import { FormsModule } from '@angular/forms';
 // Firebase
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
-import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './auth/login/login.component';
@@ -18,6 +18,7 @@ import { DetalleComponent } from './ingreso-egreso/detalle/detalle.component';
 import { FootherComponent } from './shared/foother/foother.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
+import { environment } from '../environments/environment.prod';
 
 @NgModule({
   declarations: [
@@ -36,9 +37,9 @@ import { SidebarComponent } from './shared/sidebar/sidebar.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    AngularFireModule,
+    AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
-    AngularFireAuth
+    AngularFireAuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]
