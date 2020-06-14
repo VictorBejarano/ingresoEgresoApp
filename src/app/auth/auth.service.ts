@@ -15,24 +15,26 @@ export class AuthService {
         this.afAuth
             .createUserWithEmailAndPassword(email, password)
             .then((res) => {
-                console.log(res);
                 this.router.navigate(['/']);
             })
             .catch((error) => {
-                console.error(error);
                 Swal.fire('Error en el login', error.message, 'error');
             });
+    }
+
+    initAuthListener() {
+        this.afAuth.authState.subscribe((fbUser) => {
+            console.log('USER', fbUser);
+        });
     }
 
     login(email: string, password: string) {
         this.afAuth
             .signInWithEmailAndPassword(email, password)
             .then((res) => {
-                console.log(res);
                 this.router.navigate(['/']);
             })
             .catch((error) => {
-                console.error(error);
                 Swal.fire('Error en el login', error.message, 'error');
             });
     }
