@@ -61,4 +61,10 @@ export class IngresoEgresoService {
             .collection('items')
             .add({ ...ingresoEgreso });
     }
+
+    borrarIngresoEgreso(uid: string) {
+        const user = this.authService.getUsuario();
+
+        return this.afDB.doc(`${user.uid}/ingreso-egresos/items/${uid}`).delete();
+    }
 }
