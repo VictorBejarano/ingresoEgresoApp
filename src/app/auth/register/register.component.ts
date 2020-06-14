@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styles: [
-  ]
+    selector: 'app-register',
+    templateUrl: './register.component.html',
+    styles: [],
 })
 export class RegisterComponent implements OnInit {
+    constructor() {}
 
-  constructor() { }
+    ngOnInit(): void {}
 
-  ngOnInit(): void {
-  }
-
+    onSubmit(data: any) {
+        console.log(data);
+    }
 }
