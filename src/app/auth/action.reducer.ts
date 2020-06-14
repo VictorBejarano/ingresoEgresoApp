@@ -11,7 +11,7 @@ const estadoInicial: AuthState = {
 
 export function authReducer(
     state: AuthState = estadoInicial,
-    action: fromAuth.SetUserACtion
+    action: fromAuth.SetUserAction
 ): AuthState {
     switch (action.type) {
         case fromAuth.SET_USER:

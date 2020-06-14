@@ -3,9 +3,9 @@ import { User } from './user.model';
 
 export const SET_USER = '[Auth] Set User';
 
-export class SetUserACtion implements Action {
+export class SetUserAction implements Action {
     readonly type = SET_USER;
     constructor(public user: User) {}
 }
 
-export type acciones = SetUserACtion;
+export type acciones = SetUserAction;
