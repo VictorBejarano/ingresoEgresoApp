@@ -1,9 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AuthService } from '../auth.service';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/app.reducer';
+import { Subscription } from 'rxjs';
 
 export interface Data {
-  email: string;
-  password: string;
+    email: string;
+    password: string;
 }
 
 @Component({
@@ -11,13 +14,26 @@ export interface Data {
     templateUrl: './login.component.html',
     styles: [],
 })
-export class LoginComponent implements OnInit {
-    constructor(private authService: AuthService) {}
+export class LoginComponent implements OnInit, OnDestroy {
+    cargando: boolean;
+    subscription: Subscription;
 
-    ngOnInit(): void {}
+    constructor(
+        private authService: AuthService,
+        public store: Store<AppState>
+    ) {}
+
+    ngOnInit(): void {
+        this.subscription = this.store
+            .select('ui')
+            .subscribe((ui) => (this.cargando = ui.isLoading));
+    }
+
+    ngOnDestroy(): void {
+        this.subscription.unsubscribe();
+    }
 
     onSubmit(data: Data) {
-        console.log(data);
-        this.authService.login( data.email, data.password);
+        this.authService.login(data.email, data.password);
     }
 }

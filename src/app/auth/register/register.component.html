@@ -7,7 +7,7 @@
                     <form (ngSubmit)="onSubmit(f.value)" #f="ngForm">
                         <div class="form-group">
                             <div class="input-group">
-                                <input type="email" class="form-control" placeholder="Correo" ngModel name="email" required>
+                                <input type="email" class="form-control" placeholder="Correo" ngModel name="email" autocomplete="email" required>
 
                                 <div class="input-group-append">
                                     <span class="input-group-text">
@@ -31,7 +31,7 @@
 
                         <div class="form-group">
                             <div class="input-group">
-                                <input type="password" class="form-control" placeholder="Password" ngModel name="password" required>
+                                <input type="password" class="form-control" placeholder="Password" ngModel name="password" autocomplete="current-password" required>
 
                                 <div class="input-group-append">
                                     <span class="input-group-text">
@@ -42,7 +42,11 @@
                         </div>
 
                         <div class="form-group">
-                            <button [disabled]="f.invalid" class="btn btn-primary submit-btn btn-block">Crear cuenta</button>
+                            <button *ngIf="!cargando" [disabled]="f.invalid" class="btn btn-primary submit-btn btn-block">Crear cuenta</button>
+                            <button *ngIf="cargando" [disabled]="true" class="btn btn-primary submit-btn btn-block">
+                                <i class="fa fa-spin fa-sync"></i>
+                                Espere...
+                            </button>
                         </div>
                         <div class="text-block text-center my-3">
                             <span class="text-small font-weight-semibold">ya tienes una cuenta?</span>
