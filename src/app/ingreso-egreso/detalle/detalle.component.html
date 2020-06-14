@@ -14,12 +14,22 @@
                 </tr>
               </thead>
 
-              <tbody>
+              <tbody *ngFor="let item of items">
                 <tr>
-                  <td>Descripción</td>
-                  <td>Monto</td>
-                  <td>Tipo</td>
-                  <td>acciones</td>
+                  <td>{{ item.descripcion }}</td>
+                  <td>{{ item.monto | currency}}</td>
+                  <td>
+                    <span [ngClass]="{
+                        'text-success': item.tipo === 'ingreso',
+                        'text-danger': item.tipo === 'egreso'
+                      }">{{ item.tipo }}</span>
+                    </td>
+                  <td>
+                    <button (click)="borrarItem(item.uid)" class="btn btn-danger">
+                      <i class="fa fa-trash"></i>
+                      Borrar
+                    </button>
+                  </td>
                 </tr>
               </tbody>
 
